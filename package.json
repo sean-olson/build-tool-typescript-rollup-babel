@@ -1,0 +1,58 @@
+{
+  "name": "typescript_babel_build_tool",
+  "version": "1.0.0",
+  "description": "a basic typescript build tool that leverages babel",
+  "scripts": {
+    "test": "npm run test",
+    "dev": "run-s create-folders copy-html copy-images compile-scss compile-ts launch",
+    "create-folders": "mkdirp dev/js dev/css dev/img",
+    "copy-html": "cpx src/*.html dev",
+    "copy-images": "cpx src/img/**/*.* dev/img",
+    "compile-scss": "node-sass --output-style compressed --source-map true src/scss/app.scss --output dev/css",
+    "compile-ts": "run-s compile-types compile-js",
+    "compile-types": "tsc --emitDeclarationOnly",
+    "compile-js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",    
+    "launch": "run-p serve watch:*",
+    "serve": "lite-server -c bs-config.json -w 'dev/app.css'",
+    "watch": "run-p watch:* ",
+    "watch:html": "watch -p \"src/*.html\" -c \"npm run copy-html\" ",
+    "watch:scss": "watch -p \"src/scss/**/*.scss\" -c \"npm run compile-scss\" ",
+    "watch:img": "watch -p \"src/img/**/*.*\" -c \"npm run copy-images\" ",
+    "watch:ts": "watch -p \"src/ts/**/*.ts\" -c \"npm run compile-ts\" ",
+    "build": "run-s dist:create-folders dist:copy-html dist:copy-images dist:compile-scss dist:compile-ts",
+    "dist:create-folders": "mkdirp dist/js dist/css dist/img",
+    "dist:copy-html": "cpx src/*.html dist",
+    "dist:copy-images": "cpx src/img/**/*.* dist/img",
+    "dist:compile-scss": "node-sass --output-style compressed --source-map true src/scss/app.scss --output dist/css",
+    "dist:compile-ts": "rollup -c rollup.config.dist.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sean-olson/es6_rollup_build_tool.git"
+  },
+  "keywords": [
+    "rollup",
+    "build",
+    "tool",
+    "npm",
+    "es6"
+  ],
+  "author": "Sean Olson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sean-olson/es6_rollup_build_tool/issues"
+  },
+  "homepage": "https://github.com/sean-olson/es6_rollup_build_tool#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "cpx": "^1.5.0",
+    "lite-server": "^2.5.4",
+    "node-sass": "^4.13.0",
+    "npm-run-all": "^4.1.5",
+    "watch-cli": "^0.2.3"
+  }
+}
