@@ -3,9 +3,10 @@
       "target": "esnext",                       
       "module": "commonjs",                     
       "declaration": true,                      
-      "outDir": "lib",
+      "outDir": "dev\\lib",
       "strict": true,
       "allowSyntheticDefaultImports": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "emitDeclarationOnly": true
     }
   }

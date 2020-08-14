@@ -10,8 +10,8 @@
     "copy-images": "cpx src/img/**/*.* dev/img",
     "compile-scss": "node-sass --output-style compressed --source-map true src/scss/app.scss --output dev/css",
     "compile-ts": "run-s compile-types compile-js",
-    "compile-types": "tsc --emitDeclarationOnly",
-    "compile-js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",    
+    "compile-types": "tsc --build tsconfig_dev.json",
+    "compile-js": "babel src --out-file dev\\js\\app.js --extensions \".ts,.tsx\" --source-maps inline",    
     "launch": "run-p serve watch:*",
     "serve": "lite-server -c bs-config.json -w 'dev/app.css'",
     "watch": "run-p watch:* ",
@@ -23,19 +23,21 @@
     "dist:create-folders": "mkdirp dist/js dist/css dist/img",
     "dist:copy-html": "cpx src/*.html dist",
     "dist:copy-images": "cpx src/img/**/*.* dist/img",
-    "dist:compile-scss": "node-sass --output-style compressed --source-map true src/scss/app.scss --output dist/css",
-    "dist:compile-ts": "rollup -c rollup.config.dist.js"
+    "dist:compile-scss": "node-sass --output-style compressed src/scss/app.scss --output dist/css",
+    "dist:compile-ts": "run-s dist:compile-types dist:compile-js",
+    "dist:compile-types": "tsc --build tsconfig_dist.json",    
+    "dist:compile-js": "babel src --out-file dist\\js\\app.js --extensions \".ts,.tsx\" "
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sean-olson/es6_rollup_build_tool.git"
+    "url": "git+https://github.com/sean-olson/typescript_babel_build_tool"
   },
   "keywords": [
-    "rollup",
+    "babel",
+    "typescript",
     "build",
     "tool",
-    "npm",
-    "es6"
+    "npm"
   ],
   "author": "Sean Olson",
   "license": "MIT",
