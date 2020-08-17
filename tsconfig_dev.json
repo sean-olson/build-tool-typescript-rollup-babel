@@ -1,12 +1,15 @@
 {
-    "compilerOptions": {
-      "target": "esnext",                       
-      "module": "commonjs",                     
-      "declaration": true,                      
-      "outDir": "dev\\lib",
-      "strict": true,
-      "allowSyntheticDefaultImports": true,
-      "esModuleInterop": true,
-      "emitDeclarationOnly": true
-    }
-  }
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
