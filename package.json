@@ -9,11 +9,11 @@
     "copy-assets": "run-p copy:* ",
     "copy:html": "cpx src/*.html dev",
     "copy:images": "cpx src/img/**/*.* dev/img",
-    "copy:libs": "cpx src/libs/**/*.* dev/lib",
+    "copy:libs": "cpx src/libs/**/*.* dev/libs",
     "copy:webfonts": "cpx src/webfonts/**/*.* dev/webfonts",
     "compile-scss": "node-sass --output-style compressed --source-map true src/scss/app.scss --output dev/css",
     "compile-code": "run-s compile-types compile-js",
-    "compile-types": "tsc --build tsconfig_dev.json",
+    "compile-types": "tsc --build tsconfig-dev.json",
     "compile-js": "rollup -c rollup.config.dev.js",
     "launch": "run-p serve watch:*",
     "serve": "lite-server -c bs-config.json -w 'dev/app.css'",
@@ -29,16 +29,16 @@
     "dist-copy-assets": "run-p dist-copy:* ",
     "dist-copy:html": "cpx src/*.html dist",
     "dist-copy:images": "cpx src/img/**/*.* dist/img",
-    "dist-copy:libs": "cpx src/img/**/*.* dist/img",
-    "dist-copy:webfonts": "cpx src/img/**/*.* dist/img",
+    "dist-copy:libs": "cpx src/libs/**/*.* dist/libs",
+    "dist-copy:webfonts": "cpx src/webfonts/**/*.* dist/webfonts",
     "dist:compile-scss": "node-sass --output-style compressed src/scss/app.scss --output dist/css",
     "dist:compile-code": "run-s dist:compile-types dist:compile-js ",
-    "dist:compile-types": "tsc --build tsconfig_dist.json",
+    "dist:compile-types": "tsc --build tsconfig-dist.json",
     "dist:compile-js": "rollup -c rollup.config.dist.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sean-olson/typescript_babel_build_tool"
+    "url": "git+https://github.com/sean-olson/typescript_rollup_babel_build_tool"
   },
   "keywords": [
     "babel",
@@ -50,9 +50,9 @@
   "author": "Sean Olson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sean-olson/es6_rollup_build_tool/issues"
+    "url": "https://github.com/sean-olson/typescript_rollup_babel_build_tool/issues"
   },
-  "homepage": "https://github.com/sean-olson/es6_rollup_build_tool#readme",
+  "homepage": "https://github.com/sean-olson/typescript_rollup_babel_build_tool#readme",
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.7.2",
